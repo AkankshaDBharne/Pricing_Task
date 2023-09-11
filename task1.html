@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Pricing </title>
+    
+    
+    <!-- Include Bootstrap CSS and JavaScript -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lighthouse/8.4.0/lighthouse.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- /Navbar -->
+<nav class="navbar navbar-expand p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <div class="container">
+        <div class="navbar-brand">
+            Company Name
+        </div>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+                <a class="nav-link p-2 text-dark" href="#">Features </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link p-2 text-dark" href="#">Enterprise</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link p-2 text-dark" href="#">Support</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link p-2 text-dark" href="#">Pricing</a>
+            </li>
+            <li class="nav-item my-2 my-md-0 mr-md-3">
+                    <button id="signUp" class="btn btn-outline-primary ">SignUp</button>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto">
+        <div class="header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1>Pricing</h1>
+            <h5 class="para text-muted text-center ">
+                Quickly build an effective pricing table for your potential customers with this </br> Bootstrap example. 
+                It's built with default Bootstrap components and utilities with </br> little customization.
+            </h5>
+        </div>
+        
+        <!-- Pricing Tables -->
+        <div class="container mt-3">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal text-center">Free</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <h1 class="card-title pricing-card-title">$0<small class="text-muted">/mo</small></h1>
+                            <p>10 users includes</p>
+                            <p>2GB of Storage</p>
+                            <p>Email support</p>
+                            <p>Help center access</p>
+                            <button type="signUp" class="btn btn-lg btn-block btn-outline-primary" data-toggle="modal" data-target="#myModal">Sign Up for free</button>
+                        </div>
+                    </div>
+                </div>
+        
+                
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal text-center">Pro</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <h1 class="card-title pricing-card-title">$15<small class="text-muted">/mo</small></h1>
+                            <p>20 users includes</p>
+                            <p>10GB of Storage</p>
+                            <p>Priority email support</p>
+                            <p>Help center access</p>
+                            <button type="button" class="btn btn-lg btn-block btn-primary" data-toggle="modal" data-target="#myModal">Get started</button>
+                        </div>
+                    </div>
+                </div>
+        
+              
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal text-center">Enterprise</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <h1 class="card-title pricing-card-title">$29<small class="text-muted">/mo</small></h1>
+                            <p>30 users includes</p>
+                            <p>15GB of Storage</p>
+                            <p>Phone and email support</p>
+                            <p>Help center access</p>
+                            <button type="button" class="btn btn-lg btn-block btn-primary" data-toggle="modal" data-target="#myModal">Contact Us</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+          <!-- Slider -->
+          <div class="container mt-2 pt-4">
+            <div class="row justify-content-center">
+                <div class="col-md-4 text-center">
+                    <div id="userSlider"></div>
+                    <label for="userSlider" style="font-size: 18px">Users: <span id="userCount">0</span></label>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(function () {
+                $("#userSlider").slider({
+                    range: "min",
+                    min: 0,
+                    max: 30,
+                    value: 0,
+                    slide: function (event, ui) {
+                        $("#userCount").text(ui.value); // Update the user count
+                        highlightPricingPlan(ui.value);
+                    }
+                });
+    
+                highlightPricingPlan(0);
+    
+                function highlightPricingPlan(users) {
+                    const userRanges = [0, 10, 20, 30];
+                    const planCards = document.querySelectorAll(".card");
+    
+                    for (let i = 0; i < userRanges.length; i++) {
+                        if (users >= userRanges[i] && users < userRanges[i + 1]) {
+                            planCards.forEach(card => card.classList.remove("highlighted"));
+                            planCards[i].classList.add("highlighted");
+                            break;
+                        }
+                    }
+                }
+            });
+        </script>
+    
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Order Form</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Id</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                            </div>
+                            <div class="form-group">
+                                <label for="comments">Order Comments</label>
+                                <textarea class="form-control" id="comments" rows="4" placeholder="Enter your order comments"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <!-- Footer -->
+        <footer class="pt-4 my-md-5 pt-md-5 border-top">
+            <div class="container py-4">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class= "mb-2" 
+                             src="https://getbootstrap.com/docs/4.5/assets/brand/bootstrap-solid.svg" 
+                             alt="Bootstrap Logo" width="24" height="24">
+                        <small class="d-block mb-3 text-muted">© 2017-2018</small>  
+                    </div>
+                        
+                   
+                    <div class="col-md-3">
+                        <h5>Features</h5>
+                        <ul class="list-unstyled text-dark">
+                            <li><a href="#" class="text-muted">Cool stuff</a></li>
+                            <li><a href="#" class="text-muted">Random feature</a></li>
+                            <li><a href="#" class="text-muted">Team feature</a></li>
+                            <li><a href="#" class="text-muted">Stuff for developers</a></li>
+                            <li><a href="#" class="text-muted">Another one</a></li>
+                            <li><a href="#" class="text-muted">Last Time</a></li>
+                        </ul>
+                    </div>
+                   
+                    <div class="col-md-3">
+                        <h5>Resources</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-muted">Resouce</a></li>
+                            <li><a href="#" class="text-muted">Resource name</a></li>
+                            <li><a href="#" class="text-muted">Another resource</a></li>
+                            <li><a href="#" class="text-muted">Final resource</a></li>
+                        </ul>
+                    </div>
+                 
+                    <div class="col-md-3">
+                        <h5>About</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-muted">Team</a></li>
+                            <li><a href="#" class="text-muted">Locations</a></li>
+                            <li><a href="#" class="text-muted">Privacy</a></li>
+                            <li><a href="#" class="text-muted">Terms</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    
+    </div>
+</div>
+
+
+</body>
+</html>
