@@ -13,7 +13,9 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lighthouse/8.4.0/lighthouse.min.js"></script>
+    
+    
+  
 
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -112,47 +114,19 @@
                 </div>
             </div>
         </div>
+       
 
           <!-- Slider -->
           <div class="container mt-2 pt-4">
             <div class="row justify-content-center">
-                <div class="col-md-4 text-center">
+                <div class="col-md-4 text-center ">
                     <div id="userSlider"></div>
                     <label for="userSlider" style="font-size: 18px">Users: <span id="userCount">0</span></label>
                 </div>
             </div>
-        </div>
+         </div>
 
-        <script>
-            $(function () {
-                $("#userSlider").slider({
-                    range: "min",
-                    min: 0,
-                    max: 30,
-                    value: 0,
-                    slide: function (event, ui) {
-                        $("#userCount").text(ui.value); // Update the user count
-                        highlightPricingPlan(ui.value);
-                    }
-                });
-    
-                highlightPricingPlan(0);
-    
-                function highlightPricingPlan(users) {
-                    const userRanges = [0, 10, 20, 30];
-                    const planCards = document.querySelectorAll(".card");
-    
-                    for (let i = 0; i < userRanges.length; i++) {
-                        if (users >= userRanges[i] && users < userRanges[i + 1]) {
-                            planCards.forEach(card => card.classList.remove("highlighted"));
-                            planCards[i].classList.add("highlighted");
-                            break;
-                        }
-                    }
-                }
-            });
-        </script>
-    
+
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -164,9 +138,9 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="https://forms.maakeetoo.com/formapi/644" method="POST">
                             <div class="form-group">
-                                <label for="name">Name</label>
+                                <label for="firstname">Name</label>
                                 <input type="text" class="form-control" id="name" placeholder="Enter your name">
                             </div>
                             <div class="form-group">
@@ -174,19 +148,20 @@
                                 <input type="email" class="form-control" id="email" placeholder="Enter your email">
                             </div>
                             <div class="form-group">
-                                <label for="comments">Order Comments</label>
+                                <label for="message">Order Comments</label>
                                 <textarea class="form-control" id="comments" rows="4" placeholder="Enter your order comments"></textarea>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Submit</button>
+                        <button type="button" id="SubmitForm" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
             </div>
         </div>
 
+        <script src="script.js"></script>
         
         <!-- Footer -->
         <footer class="pt-4 my-md-5 pt-md-5 border-top">

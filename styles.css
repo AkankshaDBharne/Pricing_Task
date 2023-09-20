@@ -16,11 +16,6 @@ body {
     color:white;
 }
 
-/* .para{
-    font-size: 1.25rem;
-    font-weight: 300;
-} */
-
 .card {
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -28,11 +23,12 @@ body {
     transition: box-shadow 0.3s ease-in-out;
 }
 
-.card.highlighted {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-}
 
 .highlighted {
     border:2px solid blue;
-    animation: forwards; 
+    animation:forwards; 
+    box-shadow: 5px 10px 18px lightblue;
+   
 }
+
+
