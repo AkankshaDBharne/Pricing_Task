@@ -6,7 +6,7 @@ $(function () {
         max: 30,
         value: 0,
         slide: function (event, ui) {
-            $("#userCount").text(ui.value); // Update the user count
+            $("#userCount").text(ui.value); 
             highlightPricingPlan(ui.value);
         }
     });
@@ -27,33 +27,30 @@ $(function () {
     }
 });
 
-$("#SubmitForm").click(function() {
+//form handling
+const submitButton = document.getElementById('SubmitForm');
 
-    const name = $("#name").val();
-    const email = $("#email").val();
-    const comments = $("#comments").val();
+submitButton.addEventListener('click', async () => {
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const comments = document.getElementById('comments').value;
 
-    const formData = {
-        name: name,
-        email: email,
-        comments: comments
-    };
-
-    $.ajax({
-        type: "POST",
-        url: "https://forms.maakeetoo.com/formsdata/644", 
-        data: JSON.stringify(formData),
-        contentType: "application/json",
-        success: function(response) {
-            
-            console.log("Data submitted successfully:", response);
-            alert("Order submitted successfully!");
-        },
-        error: function(error) {
-           
-            console.error("Error submitting data:", error);
-            alert("Failed to submit order.");
-        }
+  try {
+    const response = await fetch('/api/server', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, email, comments }),
     });
-});
 
+    if (response.ok) {
+      alert('Form data submitted successfully!');
+    } else {
+      alert('Error submitting form data.');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Failed to submit form data.');
+  }
+});
